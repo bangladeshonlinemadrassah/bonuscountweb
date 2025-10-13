@@ -38,7 +38,7 @@
         
         .header {
             background: linear-gradient(135deg, #4a5fc9 0%, #5a3a8a 100%);
-            padding: 10px 20px;
+            padding: 15px 20px;
             color: white;
             position: relative;
             overflow: hidden;
@@ -82,13 +82,13 @@
         .customer-info {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 5px;
+            gap: 10px;
             margin-top: 8px;
         }
         
         .info-box {
             background: rgba(255,255,255,0.15);
-            padding: 6px 12px;
+            padding: 8px 12px;
             border-radius: 6px;
             border-left: 3px solid #FFD700;
         }
@@ -105,7 +105,7 @@
         }
         
         .content {
-            padding: 10px 20px;
+            padding: 15px 20px;
             flex: none;
             display: flex;
             flex-direction: column;
@@ -119,7 +119,7 @@
         
         .highlight-box {
             background: linear-gradient(135deg, #d3547d 0%, #c0392b 100%);
-            padding: 8px 15px;
+            padding: 10px 15px;
             border-radius: 10px;
             color: white;
             text-align: center;
@@ -142,7 +142,7 @@
             width: 100%;
             border-collapse: collapse;
             margin-top: 8px;
-            font-size: 9px;
+            font-size: 10px;
             flex-shrink: 0;
         }
         
@@ -152,18 +152,18 @@
         }
         
         .bonus-table th {
-            padding: 5px 6px;
+            padding: 8px 6px;
             text-align: center;
             font-weight: 600;
             border: 1px solid white;
-            line-height: 1.1;
+            line-height: 1.2;
         }
         
         .bonus-table td {
-            padding: 4px;
+            padding: 6px;
             text-align: center;
             border: 1px solid #ddd;
-            line-height: 1.1;
+            line-height: 1.2;
         }
         
         .bonus-table tbody tr:nth-child(odd) {
@@ -186,22 +186,22 @@
         .bonus-amount {
             font-weight: 700;
             color: #c0392b;
-            font-size: 10px;
+            font-size: 11px;
         }
         
         .total-amount {
             font-weight: 700;
             color: #27ae60;
-            font-size: 10px;
+            font-size: 11px;
         }
         
         .emoji {
-            font-size: 12px;
+            font-size: 14px;
         }
         
         .summary-box {
             background: linear-gradient(135deg, #2ecc71 0%, #1abc9c 100%);
-            padding: 10px 15px;
+            padding: 12px 15px;
             border-radius: 10px;
             margin-top: 4px;
             text-align: center;
@@ -224,7 +224,7 @@
         
         .footer {
             text-align: center;
-            padding: 5px 20px;
+            padding: 10px 20px;
             font-size: 9px;
             color: #333;
             flex-shrink: 0;
@@ -391,7 +391,8 @@
             justify-content: center;
             gap: 25px;
             margin: 30px auto;
-            max-width: 210mm;
+            width: 100%;
+            max-width: 100%;
         }
         
         .action-buttons button {
@@ -688,7 +689,7 @@
                 row.innerHTML = `
                     <td><span class="emoji">${emojis[i-1]}</span> <span class="milestone">${formatBanglaNumber(i)}</span></td>
                     <td class="milestone">${formatCurrency(requiredSales)}</td>
-                    <td style="font-size: 8px;">${formatCurrency(clubSerial)} × ${formatBanglaNumber(i * 3)}</td>
+                    <td style="font-size: 9px;">${formatCurrency(clubSerial)} × ${formatBanglaNumber(i * 3)}</td>
                     <td class="bonus-amount">৳ ${formatCurrency(bonusPerClub)}</td>
                     <td class="bonus-amount">৳ ${formatCurrency(totalBonus)}</td>
                     <td class="total-amount">৳ ${formatCurrency(cumulativeTotal)}</td>
@@ -783,4 +784,4 @@
         });
     </script>
 </body>
-    </html>
+</html>
