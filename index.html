@@ -14,7 +14,7 @@
         }
         
         body {
-            font-family: 'Hind+Siliguri', sans-serif;
+            font-family: 'Hind Siliguri', sans-serif;
             background: linear-gradient(135deg, #4a5fc9 0%, #5a3a8a 100%);
             padding: 20px;
             min-height: 100vh;
@@ -276,7 +276,6 @@
             box-shadow: 0 15px 40px rgba(0,0,0,0.25);
             text-align: center;
             animation: fadeIn 0.5s ease-in-out;
-            position: relative;
         }
 
         @keyframes fadeIn {
@@ -394,7 +393,6 @@
             margin: 30px auto;
             width: 100%;
             max-width: 100%;
-            padding: 0 20px;
         }
         
         .action-buttons button {
@@ -427,7 +425,9 @@
         
         /* Contact Footer */
         .contact-footer {
+            margin-top: auto;
             text-align: center;
+            padding: 20px;
             font-size: 13px;
             color: white;
             background: rgba(0,0,0,0.1);
@@ -436,17 +436,6 @@
             width: 100%;
             margin-left: -20px;
             margin-right: -20px;
-        }
-        
-        .input-footer {
-            margin-top: 30px;
-            padding: 15px;
-            border-radius: 0 0 20px 20px;
-        }
-        
-        .document-footer {
-            margin-top: auto;
-            padding: 20px;
         }
         
         .contact-footer a {
@@ -471,15 +460,14 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(0,0,0,0.8);
-            z-index: 2000;
-            flex-direction: column;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 9999;
             justify-content: center;
             align-items: center;
-            color: white;
+            flex-direction: column;
         }
-
-        .loading-content {
+        
+        .loading-container {
             background: white;
             padding: 30px;
             border-radius: 15px;
@@ -488,63 +476,64 @@
             max-width: 400px;
             width: 90%;
         }
-
-        .loading-title {
-            font-size: 20px;
-            margin-bottom: 20px;
+        
+        .loading-header {
+            font-size: 22px;
             color: #4a5fc9;
+            margin-bottom: 15px;
             font-weight: 700;
         }
-
-        .loading-step {
+        
+        .loading-status {
             font-size: 16px;
-            margin-bottom: 15px;
             color: #333;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
+            margin-bottom: 20px;
+            min-height: 24px;
         }
-
-        .loading-step.active {
-            color: #4a5fc9;
-            font-weight: 600;
-        }
-
-        .loading-step.completed {
-            color: #27ae60;
-        }
-
+        
         .progress-container {
             width: 100%;
-            height: 10px;
-            background: #e0e0e0;
-            border-radius: 5px;
-            margin: 20px 0;
+            height: 12px;
+            background: #f0f0f0;
+            border-radius: 10px;
             overflow: hidden;
+            margin-bottom: 20px;
         }
-
+        
         .progress-bar {
             height: 100%;
             background: linear-gradient(135deg, #4a5fc9 0%, #5a3a8a 100%);
-            border-radius: 5px;
+            border-radius: 10px;
             width: 0%;
             transition: width 0.3s ease;
         }
-
-        .loading-spinner {
-            width: 40px;
-            height: 40px;
-            border: 4px solid rgba(74, 95, 201, 0.3);
-            border-top: 4px solid #4a5fc9;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 15px;
+        
+        .loading-dots {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
         }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        
+        .dot {
+            width: 10px;
+            height: 10px;
+            background: #4a5fc9;
+            border-radius: 50%;
+            margin: 0 5px;
+            animation: pulse 1.5s infinite ease-in-out;
+        }
+        
+        .dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        
+        .dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(0.8); opacity: 0.5; }
+            50% { transform: scale(1.2); opacity: 1; }
         }
         
         /* Print Styles */
@@ -622,13 +611,6 @@
             <button type="submit">জমা দিন</button>
         </form>
         <div class="error-message" id="errorMessage">ভুল পাসওয়ার্ড! দয়া করে সঠিক পাসওয়ার্ড দিন।</div>
-        
-        <div class="contact-footer input-footer">
-            কোনো সমস্যা হলে যোগাযোগ করুন: 
-            <a href="mailto:s4351825@gmail.com">ইমেইল</a> | 
-            <a href="https://wa.me/8801921996424">WhatsApp</a> | 
-            নাম: Sahibul Musa Sium
-        </div>
     </div>
 
     <div class="mini-form" id="miniForm">
@@ -636,10 +618,8 @@
         <input type="number" id="miniClubSerial" placeholder="ক্লাব আইডি">
         <input type="number" id="miniTotalClubs" placeholder="মোট ক্লাব">
         <input type="password" id="miniPassword" placeholder="পাসওয়ার্ড">
-        <button id="miniSubmit" onclick="location.reload()">আপডেট</button>
-<div class="refresh-link">
-    <a href="#" onclick="location.reload(); return false;">বাটনে চাপ দিলেই ওয়েবসাইট রিফ্রেশ হবে</a>
-</div>
+        <button id="miniSubmit">আপডেট</button>
+    </div>
 
     <div class="page" id="documentPage">
         <div class="decorative-corner corner-tl"></div>
@@ -698,6 +678,12 @@
                 </div>
             </div>
         </div>
+        
+        <div class="footer">
+            <p>📅 তারিখ: <span id="currentDate"></span> | 📞 01567901178 / 📧 s4351825@gmail.com | 📝 Sahibul Musa Sium</p>
+            <p style="margin-top: 4px; font-style: italic; color: #333;">খুব শিঘ্রই কম্পানি মানুষের টাকা মেরে পালায়ন করবে তাই বেশি বেশি ইনভেষ্ট করুন</p>
+        </div>
+    </div>
 
     <div class="action-buttons" id="actionButtons">
         <button id="downloadPdf">PDF ডাউনলোড</button>
@@ -705,7 +691,7 @@
         <button id="printDocument">প্রিন্ট</button>
     </div>
 
-    <div class="contact-footer document-footer" id="documentFooter">
+    <div class="contact-footer">
         কোনো সমস্যা হলে যোগাযোগ করুন: 
         <a href="mailto:s4351825@gmail.com">ইমেইল</a> | 
         <a href="https://wa.me/8801921996424">WhatsApp</a> | 
@@ -713,19 +699,17 @@
     </div>
 
     <div id="loading">
-        <div class="loading-content">
-            <div class="loading-spinner"></div>
-            <div class="loading-title">ডকুমেন্ট প্রস্তুত করা হচ্ছে</div>
-            
-            <div class="loading-step" id="step1">ফাইল তৈরি হচ্ছে</div>
-            <div class="loading-step" id="step2">এনহ্যান্স করা হচ্ছে</div>
-            <div class="loading-step" id="step3">প্রস্তুত করা হচ্ছে</div>
-            
+        <div class="loading-container">
+            <div class="loading-header">ডকুমেন্ট প্রস্তুত হচ্ছে</div>
+            <div class="loading-status" id="loadingStatus">প্রস্তুত করছি...</div>
             <div class="progress-container">
                 <div class="progress-bar" id="progressBar"></div>
             </div>
-            
-            <div id="loadingStatus">অপেক্ষা করুন...</div>
+            <div class="loading-dots">
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+            </div>
         </div>
     </div>
 
@@ -815,170 +799,139 @@
                 document.getElementById('miniTotalClubs').value = totalClubs;
                 document.getElementById('miniPassword').value = '';
                 document.body.style.paddingTop = `${miniFormHeight}px`;
+            } else {
+                // Mini form submission - reload the page
+                location.reload();
             }
 
             document.getElementById('documentPage').style.display = 'flex';
             document.getElementById('actionButtons').style.display = 'flex';
-            document.getElementById('documentFooter').style.display = 'block';
         }
 
         document.getElementById('inputForm').addEventListener('submit', handleFormSubmit);
         document.getElementById('miniSubmit').addEventListener('click', (e) => handleFormSubmit(e, true));
 
-        // Enhanced loading system
         const loading = document.getElementById('loading');
-        const progressBar = document.getElementById('progressBar');
-        const step1 = document.getElementById('step1');
-        const step2 = document.getElementById('step2');
-        const step3 = document.getElementById('step3');
         const loadingStatus = document.getElementById('loadingStatus');
+        const progressBar = document.getElementById('progressBar');
 
-        function updateLoading(progress, message) {
+        function updateLoading(status, progress) {
+            loadingStatus.textContent = status;
             progressBar.style.width = `${progress}%`;
-            loadingStatus.textContent = message;
+        }
+
+        // Enhanced document generation with quality improvement
+        function enhanceDocumentForExport() {
+            // Temporarily increase font sizes for better print quality
+            const elements = document.querySelectorAll('.bonus-table, .info-value, .highlight-box, .summary-box, .footer');
+            elements.forEach(el => {
+                const currentFontSize = window.getComputedStyle(el).fontSize;
+                const newSize = parseFloat(currentFontSize) * 1.2;
+                el.style.fontSize = `${newSize}px`;
+            });
             
-            // Update step status
-            if (progress >= 33) {
-                step1.classList.add('completed');
-                step2.classList.add('active');
-            }
-            if (progress >= 66) {
-                step2.classList.add('completed');
-                step3.classList.add('active');
-            }
-            if (progress >= 100) {
-                step3.classList.add('completed');
-            }
+            return () => {
+                // Revert changes after export
+                elements.forEach(el => {
+                    el.style.fontSize = '';
+                });
+            };
         }
 
-        function resetLoading() {
-            progressBar.style.width = '0%';
-            step1.classList.remove('completed', 'active');
-            step2.classList.remove('completed', 'active');
-            step3.classList.remove('completed', 'active');
-            step1.classList.add('active');
-            loadingStatus.textContent = 'অপেক্ষা করুন...';
-        }
-
-        // Enhanced download functions
+        // Download PDF
         document.getElementById('downloadPdf').addEventListener('click', () => {
-            resetLoading();
             loading.style.display = 'flex';
+            updateLoading('ডকুমেন্ট প্রস্তুত করছি...', 10);
             
             setTimeout(() => {
-                updateLoading(10, 'ডকুমেন্ট তৈরি করা হচ্ছে...');
+                updateLoading('ডকুমেন্ট এনহ্যান্স করছি...', 30);
+                
                 setTimeout(() => {
-                    updateLoading(30, 'এনহ্যান্সমেন্ট প্রক্রিয়া চলছে...');
-                    setTimeout(() => {
-                        updateLoading(60, 'উচ্চ-রেজোলিউশন প্রস্তুত করা হচ্ছে...');
+                    const element = document.getElementById('documentPage');
+                    const revertChanges = enhanceDocumentForExport();
+                    
+                    updateLoading('PDF তৈরি করছি...', 60);
+                    
+                    const opt = {
+                        margin: 0,
+                        filename: 'club_bonus_details.pdf',
+                        image: { type: 'jpeg', quality: 1.0 },
+                        html2canvas: { 
+                            scale: 3, // Increased scale for better quality
+                            useCORS: true,
+                            logging: false
+                        },
+                        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+                    };
+                    
+                    html2pdf().set(opt).from(element).save().then(() => {
+                        updateLoading('ডাউনলোড প্রস্তুত!', 100);
                         setTimeout(() => {
-                            updateLoading(90, 'PDF ফাইল তৈরি হচ্ছে...');
-                            
-                            const element = document.getElementById('documentPage');
-                            const opt = {
-                                margin: 0,
-                                filename: 'club_bonus_details.pdf',
-                                image: { type: 'jpeg', quality: 1.0 },
-                                html2canvas: { 
-                                    scale: 3,
-                                    useCORS: true,
-                                    logging: false,
-                                    letterRendering: true
-                                },
-                                jsPDF: { 
-                                    unit: 'mm', 
-                                    format: 'a4', 
-                                    orientation: 'portrait',
-                                    compress: true
-                                }
-                            };
-                            
-                            html2pdf().set(opt).from(element).save().then(() => {
-                                updateLoading(100, 'PDF সফলভাবে ডাউনলোড হয়েছে!');
-                                setTimeout(() => {
-                                    loading.style.display = 'none';
-                                }, 1000);
-                            });
-                        }, 300);
-                    }, 300);
+                            loading.style.display = 'none';
+                            revertChanges();
+                        }, 500);
+                    });
                 }, 300);
             }, 300);
         });
 
+        // Download HD Image
         document.getElementById('downloadImage').addEventListener('click', () => {
-            resetLoading();
             loading.style.display = 'flex';
+            updateLoading('ডকুমেন্ট প্রস্তুত করছি...', 10);
             
             setTimeout(() => {
-                updateLoading(10, 'ডকুমেন্ট তৈরি করা হচ্ছে...');
+                updateLoading('ডকুমেন্ট এনহ্যান্স করছি...', 30);
+                
                 setTimeout(() => {
-                    updateLoading(30, 'এনহ্যান্সমেন্ট প্রক্রিয়া চলছে...');
-                    setTimeout(() => {
-                        updateLoading(60, 'উচ্চ-রেজোলিউশন ইমেজ তৈরি হচ্ছে...');
+                    const element = document.getElementById('documentPage');
+                    const revertChanges = enhanceDocumentForExport();
+                    
+                    updateLoading('HD ইমেজ তৈরি করছি...', 60);
+                    
+                    html2canvas(element, { 
+                        scale: 3, // Increased scale for better quality
+                        useCORS: true,
+                        logging: false,
+                        backgroundColor: '#ffffff'
+                    }).then(canvas => {
+                        updateLoading('ইমেজ ফাইনাল করছি...', 90);
+                        
                         setTimeout(() => {
-                            updateLoading(90, 'HD ইমেজ প্রক্রিয়া চলছে...');
+                            const link = document.createElement('a');
+                            link.download = 'club_bonus_details.png';
+                            link.href = canvas.toDataURL('image/png', 1.0);
+                            link.click();
                             
-                            const element = document.getElementById('documentPage');
-                            const options = {
-                                scale: 3,
-                                useCORS: true,
-                                logging: false,
-                                backgroundColor: '#ffffff',
-                                removeContainer: true,
-                                letterRendering: true
-                            };
-                            
-                            html2canvas(element, options).then(canvas => {
-                                updateLoading(95, 'ইমেজ ফাইনাল করা হচ্ছে...');
-                                
-                                // Enhance image quality further
-                                const enhancedCanvas = document.createElement('canvas');
-                                const ctx = enhancedCanvas.getContext('2d');
-                                enhancedCanvas.width = canvas.width;
-                                enhancedCanvas.height = canvas.height;
-                                
-                                // Apply smoothing for better quality
-                                ctx.imageSmoothingEnabled = true;
-                                ctx.imageSmoothingQuality = 'high';
-                                ctx.drawImage(canvas, 0, 0);
-                                
-                                const link = document.createElement('a');
-                                link.download = 'club_bonus_details.png';
-                                link.href = enhancedCanvas.toDataURL('image/png', 1.0);
-                                link.click();
-                                
-                                updateLoading(100, 'HD ইমেজ সফলভাবে ডাউনলোড হয়েছে!');
-                                setTimeout(() => {
-                                    loading.style.display = 'none';
-                                }, 1000);
-                            });
-                        }, 300);
-                    }, 300);
-                }, 300);
-            }, 300);
-        });
-
-        document.getElementById('printDocument').addEventListener('click', () => {
-            resetLoading();
-            loading.style.display = 'flex';
-            
-            setTimeout(() => {
-                updateLoading(10, 'প্রিন্ট সেটআপ প্রস্তুত করা হচ্ছে...');
-                setTimeout(() => {
-                    updateLoading(40, 'ডকুমেন্ট এনহ্যান্স করা হচ্ছে...');
-                    setTimeout(() => {
-                        updateLoading(70, 'প্রিন্ট সেটিংস কনফিগার করা হচ্ছে...');
-                        setTimeout(() => {
-                            updateLoading(90, 'প্রিন্ট ডায়ালগ খোলা হচ্ছে...');
-                            
+                            updateLoading('ডাউনলোড প্রস্তুত!', 100);
                             setTimeout(() => {
-                                window.print();
-                                updateLoading(100, 'প্রিন্ট সম্পন্ন হয়েছে!');
-                                setTimeout(() => {
-                                    loading.style.display = 'none';
-                                }, 1000);
+                                loading.style.display = 'none';
+                                revertChanges();
                             }, 500);
                         }, 300);
+                    });
+                }, 300);
+            }, 300);
+        });
+
+        // Print
+        document.getElementById('printDocument').addEventListener('click', () => {
+            loading.style.display = 'flex';
+            updateLoading('ডকুমেন্ট প্রস্তুত করছি...', 10);
+            
+            setTimeout(() => {
+                updateLoading('ডকুমেন্ট এনহ্যান্স করছি...', 40);
+                
+                setTimeout(() => {
+                    updateLoading('প্রিন্ট ডায়ালগ খুলছি...', 80);
+                    
+                    setTimeout(() => {
+                        window.print();
+                        updateLoading('প্রিন্ট প্রস্তুত!', 100);
+                        
+                        setTimeout(() => {
+                            loading.style.display = 'none';
+                        }, 500);
                     }, 300);
                 }, 300);
             }, 300);
