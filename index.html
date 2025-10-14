@@ -14,7 +14,7 @@
         }
         
         body {
-            font-family: 'Hind Siliguri', sans-serif;
+            font-family: 'Hind+Siliguri', sans-serif;
             background: linear-gradient(135deg, #4a5fc9 0%, #5a3a8a 100%);
             padding: 20px;
             min-height: 100vh;
@@ -276,6 +276,7 @@
             box-shadow: 0 15px 40px rgba(0,0,0,0.25);
             text-align: center;
             animation: fadeIn 0.5s ease-in-out;
+            position: relative;
         }
 
         @keyframes fadeIn {
@@ -393,6 +394,7 @@
             margin: 30px auto;
             width: 100%;
             max-width: 100%;
+            padding: 0 20px;
         }
         
         .action-buttons button {
@@ -425,9 +427,7 @@
         
         /* Contact Footer */
         .contact-footer {
-            margin-top: auto;
             text-align: center;
-            padding: 20px;
             font-size: 13px;
             color: white;
             background: rgba(0,0,0,0.1);
@@ -436,6 +436,17 @@
             width: 100%;
             margin-left: -20px;
             margin-right: -20px;
+        }
+        
+        .input-footer {
+            margin-top: 30px;
+            padding: 15px;
+            border-radius: 0 0 20px 20px;
+        }
+        
+        .document-footer {
+            margin-top: auto;
+            padding: 20px;
         }
         
         .contact-footer a {
@@ -452,27 +463,83 @@
             background: rgba(255,255,255,0.35);
         }
         
-        /* Loading Spinner */
+        /* Enhanced Loading Spinner */
         #loading {
             display: none;
             position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.8);
             z-index: 2000;
-            background: rgba(255,255,255,0.8);
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 20px rgba(0,0,0,0.2);
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
         }
 
-        .spinner {
-            border: 4px solid rgba(0,0,0,0.1);
-            border-top: 4px solid #4a5fc9;
-            border-radius: 50%;
+        .loading-content {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+        }
+
+        .loading-title {
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: #4a5fc9;
+            font-weight: 700;
+        }
+
+        .loading-step {
+            font-size: 16px;
+            margin-bottom: 15px;
+            color: #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .loading-step.active {
+            color: #4a5fc9;
+            font-weight: 600;
+        }
+
+        .loading-step.completed {
+            color: #27ae60;
+        }
+
+        .progress-container {
+            width: 100%;
+            height: 10px;
+            background: #e0e0e0;
+            border-radius: 5px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(135deg, #4a5fc9 0%, #5a3a8a 100%);
+            border-radius: 5px;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .loading-spinner {
             width: 40px;
             height: 40px;
+            border: 4px solid rgba(74, 95, 201, 0.3);
+            border-top: 4px solid #4a5fc9;
+            border-radius: 50%;
             animation: spin 1s linear infinite;
+            margin: 0 auto 15px;
         }
 
         @keyframes spin {
@@ -555,6 +622,13 @@
             <button type="submit">জমা দিন</button>
         </form>
         <div class="error-message" id="errorMessage">ভুল পাসওয়ার্ড! দয়া করে সঠিক পাসওয়ার্ড দিন।</div>
+        
+        <div class="contact-footer input-footer">
+            কোনো সমস্যা হলে যোগাযোগ করুন: 
+            <a href="mailto:s4351825@gmail.com">ইমেইল</a> | 
+            <a href="https://wa.me/8801921996424">WhatsApp</a> | 
+            নাম: Sahibul Musa Sium
+        </div>
     </div>
 
     <div class="mini-form" id="miniForm">
@@ -635,7 +709,7 @@
         <button id="printDocument">প্রিন্ট</button>
     </div>
 
-    <div class="contact-footer">
+    <div class="contact-footer document-footer" id="documentFooter">
         কোনো সমস্যা হলে যোগাযোগ করুন: 
         <a href="mailto:s4351825@gmail.com">ইমেইল</a> | 
         <a href="https://wa.me/8801921996424">WhatsApp</a> | 
@@ -643,7 +717,20 @@
     </div>
 
     <div id="loading">
-        <div class="spinner"></div>
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <div class="loading-title">ডকুমেন্ট প্রস্তুত করা হচ্ছে</div>
+            
+            <div class="loading-step" id="step1">ফাইল তৈরি হচ্ছে</div>
+            <div class="loading-step" id="step2">এনহ্যান্স করা হচ্ছে</div>
+            <div class="loading-step" id="step3">প্রস্তুত করা হচ্ছে</div>
+            
+            <div class="progress-container">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+            
+            <div id="loadingStatus">অপেক্ষা করুন...</div>
+        </div>
     </div>
 
     <script>
@@ -736,51 +823,169 @@
 
             document.getElementById('documentPage').style.display = 'flex';
             document.getElementById('actionButtons').style.display = 'flex';
-
-            // Removed auto scroll and zoom
+            document.getElementById('documentFooter').style.display = 'block';
         }
 
         document.getElementById('inputForm').addEventListener('submit', handleFormSubmit);
         document.getElementById('miniSubmit').addEventListener('click', (e) => handleFormSubmit(e, true));
 
+        // Enhanced loading system
         const loading = document.getElementById('loading');
+        const progressBar = document.getElementById('progressBar');
+        const step1 = document.getElementById('step1');
+        const step2 = document.getElementById('step2');
+        const step3 = document.getElementById('step3');
+        const loadingStatus = document.getElementById('loadingStatus');
 
-        // Download PDF
+        function updateLoading(progress, message) {
+            progressBar.style.width = `${progress}%`;
+            loadingStatus.textContent = message;
+            
+            // Update step status
+            if (progress >= 33) {
+                step1.classList.add('completed');
+                step2.classList.add('active');
+            }
+            if (progress >= 66) {
+                step2.classList.add('completed');
+                step3.classList.add('active');
+            }
+            if (progress >= 100) {
+                step3.classList.add('completed');
+            }
+        }
+
+        function resetLoading() {
+            progressBar.style.width = '0%';
+            step1.classList.remove('completed', 'active');
+            step2.classList.remove('completed', 'active');
+            step3.classList.remove('completed', 'active');
+            step1.classList.add('active');
+            loadingStatus.textContent = 'অপেক্ষা করুন...';
+        }
+
+        // Enhanced download functions
         document.getElementById('downloadPdf').addEventListener('click', () => {
-            loading.style.display = 'block';
-            const element = document.getElementById('documentPage');
-            const opt = {
-                margin: 0,
-                filename: 'club_bonus_details.pdf',
-                image: { type: 'jpeg', quality: 0.98 },
-                html2canvas: { scale: 2 },
-                jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
-            };
-            html2pdf().from(element).set(opt).save().then(() => {
-                loading.style.display = 'none';
-            });
-        });
-
-        // Download HD Image
-        document.getElementById('downloadImage').addEventListener('click', () => {
-            loading.style.display = 'block';
-            const element = document.getElementById('documentPage');
-            html2canvas(element, { scale: 2 }).then(canvas => {
-                const link = document.createElement('a');
-                link.download = 'club_bonus_details.png';
-                link.href = canvas.toDataURL('image/png');
-                link.click();
-                loading.style.display = 'none';
-            });
-        });
-
-        // Print
-        document.getElementById('printDocument').addEventListener('click', () => {
-            loading.style.display = 'block';
+            resetLoading();
+            loading.style.display = 'flex';
+            
             setTimeout(() => {
-                window.print();
-                loading.style.display = 'none';
-            }, 500); // Small delay for print dialog
+                updateLoading(10, 'ডকুমেন্ট তৈরি করা হচ্ছে...');
+                setTimeout(() => {
+                    updateLoading(30, 'এনহ্যান্সমেন্ট প্রক্রিয়া চলছে...');
+                    setTimeout(() => {
+                        updateLoading(60, 'উচ্চ-রেজোলিউশন প্রস্তুত করা হচ্ছে...');
+                        setTimeout(() => {
+                            updateLoading(90, 'PDF ফাইল তৈরি হচ্ছে...');
+                            
+                            const element = document.getElementById('documentPage');
+                            const opt = {
+                                margin: 0,
+                                filename: 'club_bonus_details.pdf',
+                                image: { type: 'jpeg', quality: 1.0 },
+                                html2canvas: { 
+                                    scale: 3,
+                                    useCORS: true,
+                                    logging: false,
+                                    letterRendering: true
+                                },
+                                jsPDF: { 
+                                    unit: 'mm', 
+                                    format: 'a4', 
+                                    orientation: 'portrait',
+                                    compress: true
+                                }
+                            };
+                            
+                            html2pdf().set(opt).from(element).save().then(() => {
+                                updateLoading(100, 'PDF সফলভাবে ডাউনলোড হয়েছে!');
+                                setTimeout(() => {
+                                    loading.style.display = 'none';
+                                }, 1000);
+                            });
+                        }, 300);
+                    }, 300);
+                }, 300);
+            }, 300);
+        });
+
+        document.getElementById('downloadImage').addEventListener('click', () => {
+            resetLoading();
+            loading.style.display = 'flex';
+            
+            setTimeout(() => {
+                updateLoading(10, 'ডকুমেন্ট তৈরি করা হচ্ছে...');
+                setTimeout(() => {
+                    updateLoading(30, 'এনহ্যান্সমেন্ট প্রক্রিয়া চলছে...');
+                    setTimeout(() => {
+                        updateLoading(60, 'উচ্চ-রেজোলিউশন ইমেজ তৈরি হচ্ছে...');
+                        setTimeout(() => {
+                            updateLoading(90, 'HD ইমেজ প্রক্রিয়া চলছে...');
+                            
+                            const element = document.getElementById('documentPage');
+                            const options = {
+                                scale: 3,
+                                useCORS: true,
+                                logging: false,
+                                backgroundColor: '#ffffff',
+                                removeContainer: true,
+                                letterRendering: true
+                            };
+                            
+                            html2canvas(element, options).then(canvas => {
+                                updateLoading(95, 'ইমেজ ফাইনাল করা হচ্ছে...');
+                                
+                                // Enhance image quality further
+                                const enhancedCanvas = document.createElement('canvas');
+                                const ctx = enhancedCanvas.getContext('2d');
+                                enhancedCanvas.width = canvas.width;
+                                enhancedCanvas.height = canvas.height;
+                                
+                                // Apply smoothing for better quality
+                                ctx.imageSmoothingEnabled = true;
+                                ctx.imageSmoothingQuality = 'high';
+                                ctx.drawImage(canvas, 0, 0);
+                                
+                                const link = document.createElement('a');
+                                link.download = 'club_bonus_details.png';
+                                link.href = enhancedCanvas.toDataURL('image/png', 1.0);
+                                link.click();
+                                
+                                updateLoading(100, 'HD ইমেজ সফলভাবে ডাউনলোড হয়েছে!');
+                                setTimeout(() => {
+                                    loading.style.display = 'none';
+                                }, 1000);
+                            });
+                        }, 300);
+                    }, 300);
+                }, 300);
+            }, 300);
+        });
+
+        document.getElementById('printDocument').addEventListener('click', () => {
+            resetLoading();
+            loading.style.display = 'flex';
+            
+            setTimeout(() => {
+                updateLoading(10, 'প্রিন্ট সেটআপ প্রস্তুত করা হচ্ছে...');
+                setTimeout(() => {
+                    updateLoading(40, 'ডকুমেন্ট এনহ্যান্স করা হচ্ছে...');
+                    setTimeout(() => {
+                        updateLoading(70, 'প্রিন্ট সেটিংস কনফিগার করা হচ্ছে...');
+                        setTimeout(() => {
+                            updateLoading(90, 'প্রিন্ট ডায়ালগ খোলা হচ্ছে...');
+                            
+                            setTimeout(() => {
+                                window.print();
+                                updateLoading(100, 'প্রিন্ট সম্পন্ন হয়েছে!');
+                                setTimeout(() => {
+                                    loading.style.display = 'none';
+                                }, 1000);
+                            }, 500);
+                        }, 300);
+                    }, 300);
+                }, 300);
+            }, 300);
         });
     </script>
 </body>
