@@ -803,7 +803,7 @@
                 document.getElementById('miniCustomerName').value = customerName;
                 document.getElementById('miniClubSerial').value = clubSerial;
                 document.getElementById('miniTotalClubs').value = totalClubs;
-                document.getElementById('miniPassword').value = '';
+                document.getElementById('miniPassword').value = '4321';
                 document.body.style.paddingTop = `${miniFormHeight}px`;
             } else {
                 // Mini form submission - শুধুমাত্র ডকুমেন্ট আপডেট হবে, পৃষ্ঠা রিলোড হবে না
@@ -812,7 +812,7 @@
                 // একটি সফল আপডেট মেসেজ দেখানো
                 const miniSubmitBtn = document.getElementById('miniSubmit');
                 const originalText = miniSubmitBtn.textContent;
-                miniSubmitBtn.textContent = '✅ আপডেট成功了!';
+                miniSubmitBtn.textContent = '✅ আপডেট হয়েছে!';
                 setTimeout(() => {
                     miniSubmitBtn.textContent = originalText;
                 }, 2000);
