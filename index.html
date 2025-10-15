@@ -383,6 +383,12 @@
             border-radius: 8px;
             cursor: pointer;
             font-size: 13px;
+            transition: all 0.3s ease;
+        }
+        
+        .mini-form button:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
         }
         
         /* Download/Print Buttons */
@@ -800,8 +806,16 @@
                 document.getElementById('miniPassword').value = '';
                 document.body.style.paddingTop = `${miniFormHeight}px`;
             } else {
-                // Mini form submission - reload the page
-                location.reload();
+                // Mini form submission - শুধুমাত্র ডকুমেন্ট আপডেট হবে, পৃষ্ঠা রিলোড হবে না
+                document.getElementById('miniPassword').value = ''; // শুধু পাসওয়ার্ড ফিল্ড ক্লিয়ার করুন
+                
+                // একটি সফল আপডেট মেসেজ দেখানো
+                const miniSubmitBtn = document.getElementById('miniSubmit');
+                const originalText = miniSubmitBtn.textContent;
+                miniSubmitBtn.textContent = '✅ আপডেট成功了!';
+                setTimeout(() => {
+                    miniSubmitBtn.textContent = originalText;
+                }, 2000);
             }
 
             document.getElementById('documentPage').style.display = 'flex';
