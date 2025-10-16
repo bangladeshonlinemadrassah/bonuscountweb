@@ -747,11 +747,10 @@
             tableBody.innerHTML = '';
             
             let cumulativeTotal = 0;
+            let currentRequiredSales = clubSerial * 3; // প্রথম ধাপের জন্য প্রয়োজনীয় ক্লাব সেল
             
             // Updated bonus structure
             for (let i = 1; i <= bonusSteps; i++) {
-                const requiredSales = clubSerial * (i * 3);
-                
                 // Calculate bonus per club based on the new structure
                 let bonusPerClub;
                 if (i === 1) {
@@ -765,20 +764,31 @@
                 const totalBonus = bonusPerClub * totalClubs;
                 cumulativeTotal += totalBonus;
                 
+                // গণনা পদ্ধতি দেখানো
+                let calculationMethod;
+                if (i === 1) {
+                    calculationMethod = `${clubSerial} × 3`;
+                } else {
+                    calculationMethod = `(পূর্ববর্তী ধাপ) × 3`;
+                }
+                
                 const row = document.createElement('tr');
                 
                 const emojis = ['🥉', '🥈', '🏅', '🎖️', '👑', '💎', '⭐', '🌟', '✨', '🎯', '🚀', '🔥', '💫', '⚡', '🏆'];
                 
                 row.innerHTML = `
                     <td><span class="emoji">${emojis[i-1]}</span> <span class="milestone">${formatBanglaNumber(i)}</span></td>
-                    <td class="milestone">${formatCurrency(requiredSales)}</td>
-                    <td style="font-size: 9px;">${formatCurrency(clubSerial)} × ${formatBanglaNumber(i * 3)}</td>
+                    <td class="milestone">${formatCurrency(currentRequiredSales)}</td>
+                    <td style="font-size: 9px;">${calculationMethod}</td>
                     <td class="bonus-amount">৳ ${formatCurrency(bonusPerClub)}</td>
                     <td class="bonus-amount">৳ ${formatCurrency(totalBonus)}</td>
                     <td class="total-amount">৳ ${formatCurrency(cumulativeTotal)}</td>
                 `;
                 
                 tableBody.appendChild(row);
+                
+                // পরবর্তী ধাপের জন্য প্রয়োজনীয় ক্লাব সেল আপডেট করুন
+                currentRequiredSales = currentRequiredSales * 3;
             }
             
             document.getElementById('grandTotal').textContent = `৳ ${formatCurrency(cumulativeTotal)}`;
@@ -962,4 +972,4 @@
         });
     </script>
 </body>
-    </html>
+</html>
